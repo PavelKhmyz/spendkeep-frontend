@@ -71,6 +71,8 @@ module.exports = {
     "react/no-unused-prop-types": "off",
     "@typescript-eslint/default-param-last": "off",
     'comma-dangle': ['error', 'always-multiline'],
-    'max-len': ['error', { code: 140, ignoreComments: true }]
+    'max-len': ['error', { code: 140, ignoreComments: true }],
+    'semi': ['warn', 'always'],
+    "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
   },
 };
