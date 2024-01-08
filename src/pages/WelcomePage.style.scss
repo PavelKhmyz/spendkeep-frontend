@@ -1,0 +1,35 @@
+.welcomePageWrapper {
+  height: 100%;
+  padding: 400px 100px 200px 100px;
+  color: rgb(66, 66, 66);
+  background-image: url(./welcomeAsset.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .welcomeTitle {
+    font-size: 70px;
+    margin-bottom: 20px;
+    text-shadow: 5px 5px 10px rgb(255, 255, 255);
+  }
+
+  .startLink {
+    border-radius: 5px;
+    background-color: rgb(127, 255, 234);
+    width: 250px;
+    text-align: center;
+    padding: 18px;
+    font-size: 35px;
+    color: inherit;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(0, 255, 213);
+      transform: scale(1.05);
+      transition: transform 1s;
+    }
+
+    a {
+      color: inherit;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { LoginForm } from 'src/components/Forms/LoginForm';
 import { RegistrationForm } from 'src/components/Forms/RegistrationForm';
 import './AuthorizationPage.style.scss';
@@ -39,7 +40,9 @@ export const AuthorizationPage = () => {
     <div className='authorizationWrapper'>
       <div className='assetContainer' />
       <div className='formContainer'>
-        <h1 className='authLogo'>SpendKeep</h1>
+        <h1 className='authLogo'>
+          <Link to={ '/' }>SpendKeep</Link>
+        </h1>
         <h2 className='authLabel'>{ formType.label }</h2>
         <p className='authSwitch'>
           { formType.switch + '\n' } 
