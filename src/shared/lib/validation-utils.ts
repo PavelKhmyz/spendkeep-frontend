@@ -1,4 +1,4 @@
-import { VALIDATION_ERRORS, emailRegex, passwordRegex } from 'src/constants/ValidationConstants';
+import { VALIDATION_ERRORS, emailRegex, passwordRegex } from 'src/shared/constants/ValidationConstants';
 
 export const validatePassword = (password: string) => {
   if (password.match(passwordRegex)) {

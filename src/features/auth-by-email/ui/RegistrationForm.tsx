@@ -1,17 +1,18 @@
 import { useState } from 'react';
-import { ILoginErrors } from './LoginForm';
-import { validateEmail, validatePassword, validateConfirmPassword, validateName } from 'src/utils/ValidationUtils';
-import { Input } from 'src/components/Input/Input';
-import { requests } from 'src/api/requests';
-import './Forms.style.scss';
+import { Input } from 'src/shared/ui';
+import { validateEmail, validatePassword, validateConfirmPassword, validateName, useAppDispatch } from 'src/shared/lib';
+import { userRegistration } from 'src/features/auth-by-email/model/auth-slice';
 
-interface IRegistrationErrors extends ILoginErrors {
+interface IRegistrationErrors {
+  email: string;
+  password: string;
   firstName: string;
   lastName: string;
   passwordConfirm: string;
 }
 
 export const RegistrationForm = () => {
+  const dispatch = useAppDispatch();
   const [emailValue, setEmailValue] = useState<string>('');
   const [passwordValue, setPasswordValue] = useState<string>('');
   const [firstNameValue, setFirstNameValue] = useState<string>('');
@@ -95,19 +96,17 @@ export const RegistrationForm = () => {
     return true;
   };
 
-  const { signUp } = requests();
-
   const handleSubmitClick = async () => {
     if (!isValidBeforeSubmit) {
       return;
     }
 
-    await signUp({
+    await dispatch(userRegistration({
       email: emailValue,
       firstName: firstNameValue,
       lastName: lastNameValue,
       password: passwordValue,
-    });
+    }));
   };
 
   return (

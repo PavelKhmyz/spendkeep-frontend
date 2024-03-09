@@ -1,17 +1,20 @@
 import { useState } from 'react';
-import { requests } from 'src/api/requests';
-import { Input } from 'src/components/Input/Input';
-import { validateEmail, validatePassword } from 'src/utils/ValidationUtils';
-import './Forms.style.scss';
+import { Input } from 'src/shared/ui';
+import { useAppDispatch, validateEmail, validatePassword } from 'src/shared/lib';
+import { userLogin } from 'src/features/auth-by-email/model/auth-slice';
 
 export interface ILoginErrors {
   email: string;
   password: string;
 }
 
+const MOCK_EMAIL = 'schavlik@outlook.com';
+const MOCK_PASSWORD = '123Abc321/*D';
+
 export const LoginForm = () => {
-  const [emailValue, setEmailValue] = useState<string>('');
-  const [passwordValue, setPasswordValue] = useState<string>('');
+  const dispatch = useAppDispatch();
+  const [emailValue, setEmailValue] = useState<string>(MOCK_EMAIL);
+  const [passwordValue, setPasswordValue] = useState<string>(MOCK_PASSWORD);
   const [validationErrors, setValidationErrors] = useState<ILoginErrors>({
     email: '',
     password: '',
@@ -54,17 +57,15 @@ export const LoginForm = () => {
     return true;
   };
 
-  const { signIn } = requests();
-
   const handleSubmitClick = async () => {
     if (!isValidBeforeSubmit) {
       return;
     }
-
-    await signIn({
+    
+    await dispatch(userLogin({
       email: emailValue,
       password: passwordValue,
-    });
+    }));
   };
 
   return (
